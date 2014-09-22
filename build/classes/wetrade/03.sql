@@ -1,0 +1,5 @@
+select ITEM_NO, WEIGHT, PRICE, first_name || ' ' || last_name AS full_name, COUNTRY, FILENAME, DESCRIPTION from ITEM, CUSTOMER 
+where CUST_EMAIL = ITEM_EMAIL 
+and (ITEM_NO, ITEM_EMAIL) in (select ITEM_NO,ITEM_EMAIL from ITEM where (ITEM_NO, ITEM_EMAIL) in (select KEY_ITEM_NO,KEY_ITEM_EMAIL 
+from KEYWORDS where KEYWORD = '&KEYWORD' or DESCRIPTION like '%KEYWORD%'))
+ORDER BY PRICE desc;
